@@ -307,7 +307,7 @@ export const selectedPiece = () => {
   if (i === undefined) return;
   const { row, column } = squareToPos(i);
   return pieces().find(
-    (p) => p.position.row == row && p.position.column == column
+    (p) => p.position.row == row && p.position.column == column && !p.captured
   );
 };
 export const validMoves = () => {

@@ -372,7 +372,7 @@ export function listValidMoves(p: Piece, pieces: Piece[]) {
 
 export function updatePiece(updatedP: Piece) {
   setPieces((pieces) =>
-    pieces.map((piece) => (piece.id === updatedP.id ? updatedP : piece))
+    pieces.map((piece) => (piece.id === updatedP.id ? { ...updatedP } : piece))
   );
 }
 export function removePiece(id: string) {
