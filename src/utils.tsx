@@ -9,7 +9,7 @@ import {
   ValidMove,
 } from "./types";
 
-const backend_url = import.meta.env.DEV
+export const BACKEND_URL = import.meta.env.DEV
   ? import.meta.env.VITE_BACKEND_URL_DEV
   : import.meta.env.VITE_BACKEND_URL_PROD;
 
@@ -445,7 +445,7 @@ export async function measure(circuit: Circuit): Promise<MeasurementData> {
     qubits,
   };
   console.log("send", payload);
-  const api_route = `${backend_url}/measure`;
+  const api_route = `${BACKEND_URL}/measure`;
   const response = await fetch(api_route, {
     method: "POST",
     headers: {

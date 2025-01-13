@@ -12,6 +12,7 @@ import {
   setDidAction,
 } from "~/signals";
 import "katex/dist/katex.min.css";
+import BackendLoadingBanner from "~/components/BackendLoadingBanner";
 
 export default function Home() {
   const squares = Array(64).fill(null);
@@ -74,6 +75,7 @@ export default function Home() {
         </div>
 
         <div class="bg-white  flex-1  grid grid-cols-8 relative">
+          <BackendLoadingBanner />
           <GameEndedBanner />
           <For each={squares}>{(_, i) => <Square i={i()} />}</For>
         </div>
