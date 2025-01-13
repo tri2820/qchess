@@ -1,9 +1,45 @@
-import { A } from "@solidjs/router";
-import { Show } from "solid-js";
-import Counter from "~/components/Counter";
-import { flow, pickAnother } from "~/signals";
+import katex from "katex";
+import { createEffect, createSignal, For, Show } from "solid-js";
+import GameEndedBanner from "~/components/GameEndedBanner";
+import PieceImg from "~/components/PieceImg";
+import Square from "~/components/Square";
+import {
+  capturedPieces,
+  flow,
+  pickAnother,
+  selectedCircuitLatex,
+  selectedPiece,
+  setDidAction,
+} from "~/signals";
 
 export default function Home() {
+  const squares = Array(64).fill(null);
+  const [latexEl, setLatexEl] = createSignal<HTMLElement>();
+
+  const capturedBlacks = () =>
+    capturedPieces().filter((p) => p.color == "black");
+  const capturedWhites = () =>
+    capturedPieces().filter((p) => p.color == "white");
+
+  createEffect(() => {
+    const _ = flow();
+    setDidAction(false);
+  });
+
+  createEffect(() => {
+    const p = selectedPiece();
+    const el = latexEl();
+    if (!el) return;
+    const latex = selectedCircuitLatex();
+    katex.render(
+      latex ?? (p ? (p.color == "black" ? "|0\\rangle" : "|1\\rangle") : ""),
+      el,
+      {
+        throwOnError: false,
+      }
+    );
+  });
+
   return (
     <div class="h-screen flex items-center  flex-col space-y-4">
       <div class="text-center pt-8 space-y-1">
@@ -11,12 +47,12 @@ export default function Home() {
         <div class="text-sm">A game about superposition and loyalty</div>
       </div>
 
-      {/* <div class="h-4">
+      <div class="h-4">
         <div ref={setLatexEl}></div>
-      </div> */}
+      </div>
 
       <div class="relative">
-        {/* <div class="absolute top-0 left-0 bottom-0 -translate-x-full flex flex-col">
+        <div class="absolute top-0 left-0 bottom-0 -translate-x-full flex flex-col">
           <div class=" flex-1 flex max-w-72 flex-wrap">
             <For each={capturedWhites()}>
               {(p) => <PieceImg size="sm" piece={p} />}
@@ -27,19 +63,19 @@ export default function Home() {
               {(p) => <PieceImg size="sm" piece={p} />}
             </For>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div
+        <div
           class="text-center bg-black text-white py-1 invisible data-[show=true]:visible"
           data-show={flow() == "turn-black"}
         >
           black's turn
-        </div> */}
+        </div>
 
-        {/* <div class="bg-white  flex-1  grid grid-cols-8 relative">
+        <div class="bg-white  flex-1  grid grid-cols-8 relative">
           <GameEndedBanner />
           <For each={squares}>{(_, i) => <Square i={i()} />}</For>
-        </div> */}
+        </div>
 
         <div
           class="text-center bg-white text-black py-1 invisible data-[show=true]:visible"
