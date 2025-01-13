@@ -388,7 +388,7 @@ export function initStateOf(color: Color): State {
 export const newCircuit = (): Circuit => {
   return {
     entanglements: [],
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     actions: [],
   };
 };
@@ -457,4 +457,8 @@ export async function measure(circuit: Circuit): Promise<MeasurementData> {
   const data = await response.json();
   console.log("data", data);
   return data;
+}
+
+export function randomUUID() {
+  return Math.random.toString();
 }

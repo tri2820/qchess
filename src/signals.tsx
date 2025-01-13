@@ -4,13 +4,14 @@ import {
   initStateOf,
   listValidMoves,
   newCircuit,
+  randomUUID,
   squareToPos,
 } from "./utils";
 import { Flow, Piece } from "./types";
 // At first, each piece has its own circuit
 export const [pieces, setPieces] = createSignal<Piece[]>([
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "rook",
@@ -19,7 +20,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 0, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "knight",
@@ -28,7 +29,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 1, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "bishop",
@@ -37,7 +38,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 2, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "queen",
@@ -46,7 +47,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 3, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "king",
@@ -55,7 +56,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 4, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "bishop",
@@ -64,7 +65,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 5, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "knight",
@@ -73,7 +74,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 6, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "rook",
@@ -82,7 +83,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 7, row: 0 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -91,7 +92,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 0, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -100,7 +101,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 1, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -109,7 +110,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 2, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -118,7 +119,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 3, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -127,7 +128,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 4, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -136,7 +137,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 5, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -145,7 +146,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 6, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "black",
     prob_black: 1,
     name: "pawn",
@@ -154,7 +155,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 7, row: 1 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "rook",
@@ -163,7 +164,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 0, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "knight",
@@ -172,7 +173,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 1, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "bishop",
@@ -181,7 +182,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 2, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "queen",
@@ -190,7 +191,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 3, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "king",
@@ -199,7 +200,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 4, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "bishop",
@@ -208,7 +209,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 5, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "knight",
@@ -217,7 +218,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 6, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "rook",
@@ -226,7 +227,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 7, row: 7 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -235,7 +236,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 0, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -244,7 +245,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 1, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -253,7 +254,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 2, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -262,7 +263,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 3, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -271,7 +272,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 4, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -280,7 +281,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 5, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
@@ -289,7 +290,7 @@ export const [pieces, setPieces] = createSignal<Piece[]>([
     position: { column: 6, row: 6 },
   },
   {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     color: "white",
     prob_black: 0,
     name: "pawn",
