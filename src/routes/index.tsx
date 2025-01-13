@@ -11,6 +11,7 @@ import {
   selectedPiece,
   setDidAction,
 } from "~/signals";
+import "katex/dist/katex.min.css";
 
 export default function Home() {
   const squares = Array(64).fill(null);

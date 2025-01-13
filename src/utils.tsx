@@ -460,5 +460,5 @@ export async function measure(circuit: Circuit): Promise<MeasurementData> {
 }
 
 export function randomUUID() {
-  return Math.random.toString();
+  return Math.random().toString();
 }
