@@ -4,8 +4,10 @@ import GameEndedBanner from "~/components/GameEndedBanner";
 import PieceImg from "~/components/PieceImg";
 import Square from "~/components/Square";
 import {
+  backendTask,
   capturedPieces,
   flow,
+  linesEl,
   pickAnother,
   selectedCircuitLatex,
   selectedPiece,
@@ -42,6 +44,8 @@ export default function Home() {
     );
   });
 
+  const lines = () => Object.values(linesEl()).flat();
+
   return (
     <div class="h-screen flex items-center  flex-col space-y-4">
       <div class="text-center pt-8 space-y-1">
@@ -53,7 +57,9 @@ export default function Home() {
         <div ref={setLatexEl}></div>
       </div>
 
-      <div class="relative">
+      <div class="relative" id="board-container">
+        <For each={lines()}>{(e) => e}</For>
+
         <div class="absolute top-0 left-0 bottom-0 -translate-x-full flex flex-col">
           <div class=" flex-1 flex max-w-72 flex-wrap">
             <For each={capturedWhites()}>
@@ -89,6 +95,9 @@ export default function Home() {
 
         <Show when={pickAnother()}>
           <div class="text-center py-2">Pick CNOT's target qubit</div>
+        </Show>
+        <Show when={backendTask()}>
+          {(t) => <div class="text-center py-2">{t()}</div>}
         </Show>
       </div>
     </div>

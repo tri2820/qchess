@@ -9,9 +9,11 @@ import {
   pieces,
   selectedPiece,
   selectedSquare,
+  setBackendTask,
   setBubbles,
   setDidAction,
   setFlow,
+  setLinesEl,
   setPickAnother,
   setPieces,
   setSelectedSquare,
@@ -119,6 +121,18 @@ export default function Square(props: { i: number }) {
     );
     return otherSquares;
   };
+
+  createEffect(() => {
+    const els = lines().map((l) => (
+      <Line fromDivId={`square-${props.i}`} toDivId={`square-${l}`} />
+    ));
+    setLinesEl((prev) => {
+      return {
+        ...prev,
+        [props.i]: els,
+      };
+    });
+  });
 
   const inMesh = () => {
     const p = piece();
@@ -251,7 +265,9 @@ export default function Square(props: { i: number }) {
                 return;
               }
               // Send to backend to execute circuit
+              setBackendTask("Measuring...");
               const data = await measure(p.circuit);
+              setBackendTask();
               console.log("measurement data", data);
 
               // Set each pieces'state accordingly
@@ -341,7 +357,9 @@ export default function Square(props: { i: number }) {
                 ...anotherPiece.circuit.entanglements,
               ];
 
+              setBackendTask("Applying quantum action...");
               const data = await measure(c);
+              setBackendTask();
 
               // merge circuits
               c.latex = data.latex;
@@ -373,7 +391,9 @@ export default function Square(props: { i: number }) {
               args: [p.id],
             });
 
+            setBackendTask("Applying quantum action...");
             const data = await measure(p.circuit);
+            setBackendTask();
             p.circuit.latex = data.latex;
 
             // Set each pieces'state accordingly
@@ -404,12 +424,6 @@ export default function Square(props: { i: number }) {
           setShowContextMenu={setShowContextMenu}
         />
       </Show>
-
-      <For each={lines()}>
-        {(l) => (
-          <Line fromDivId={`square-${props.i}`} toDivId={`square-${l}`} />
-        )}
-      </For>
 
       <Show when={sameCircuitAsSelected()}>
         <div class="absolute w-14 h-14 rounded-full bg-red-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"></div>

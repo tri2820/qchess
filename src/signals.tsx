@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, JSX } from "solid-js";
 import {
   findEntangledMesh,
   initStateOf,
@@ -341,6 +341,10 @@ export const [bubbles, setBubbles] = createSignal<
   { id: string; words: string }[]
 >([]);
 export const [shakes, setShakes] = createSignal<string[]>([]);
+export const [backendTask, setBackendTask] = createSignal<string>();
 export const [backendLoaded, setBackendLoaded] = createSignal<
   "not_loaded" | "loaded" | "error"
 >("not_loaded");
+export const [linesEl, setLinesEl] = createSignal<{
+  [id: string]: JSX.Element[];
+}>({});

@@ -43,7 +43,7 @@ body {
 }
 
 .line {
-  position: fixed;
+  position: absolute;
   height: 2px;
   @apply bg-red-500;
   transform-origin: top left;
