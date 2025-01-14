@@ -48,6 +48,8 @@ export default function HowTo() {
           signifying that they are part of the same quantum circuit. A red link
           is formed between these pieces to indicate their quantum correlation.
         </p>
+        <img src="/gameplay/state.png" class="my-4" />
+        <p>The vector state of the selected circuit is displayed at the top</p>
       </section>
 
       <section class="mb-8">
